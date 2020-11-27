@@ -73,13 +73,13 @@ public class Anim_Con : MonoBehaviour
         }
 
         ///プレイヤーがしゃがむとスライディング/ローリングアニメーションを再生
-        if (Input.GetKey(KeyCode.LeftControl) && isGround && paramClass.playerSpeed != 0)
+        if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && paramClass.playerSpeed != 0)       //RightControlを追加(11/27)
         {
-            Anm.SetBool("Sliding",true);
+            Anm.SetBool("Sliding", true);
         }
-        else if (Input.GetKey(KeyCode.LeftControl) && isGround && paramClass.playerSpeed == 0)
+        else if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && paramClass.playerSpeed == 0)       //RightControlを追加(11/27)
         {
-            Anm.SetBool("Roll",true);
+            Anm.SetBool("Roll", true);
         }
         else
         {
@@ -92,11 +92,11 @@ public class Anim_Con : MonoBehaviour
         ///プレイヤーが空中滞在時は落下アニメーションを再生
         if (!isGround)
         {
- //           Anm.SetBool("fall", true);
+  //         Anm.SetBool("fall", true);
         }
         else
         {
-//            Anm.SetBool("fall", false);
+  //          Anm.SetBool("fall", false);
         }
     }
 
