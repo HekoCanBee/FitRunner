@@ -36,19 +36,19 @@ public class Anim_Con : MonoBehaviour
         ///速度に応じて移動アニメーションを変化
         switch (paramClass.playerSpeed)
         {
-            case float n when n == 0:
+            case float n when n == 0: //idle
                 Run = 0;
                 break;
-            case float n when 0 <= n && n < shift_CharaAnime[0]:
+            case float n when 0 <= n && n < shift_CharaAnime[0]://walk
                 Run = 1;
                 break;
-            case float n when shift_CharaAnime[0] <= n && n < shift_CharaAnime[1]:
+            case float n when shift_CharaAnime[0] <= n && n < shift_CharaAnime[1]://jog
                 Run = 2;
                 break;
-            case float n when shift_CharaAnime[1] <= n && n < shift_CharaAnime[2]:
+            case float n when shift_CharaAnime[1] <= n && n < shift_CharaAnime[2]://dash
                 Run = 3;
                 break;
-            default:
+            default://boost
                 Run = 4;
                 break;
         }
@@ -87,6 +87,23 @@ public class Anim_Con : MonoBehaviour
             Anm.SetBool("Roll", false);
         }
         Anm.SetInteger("RunSpeed", Run);
+
+        if ((Input.GetKey(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) || paramClass.statusLR == PlayerParamClass.LRTrigger.RIGHT)
+        {
+            Anm.SetBool("Right", true);
+            Anm.SetBool("Left", false);
+        }
+       else if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) || paramClass.statusLR == PlayerParamClass.LRTrigger.LEFT)
+        {
+            Anm.SetBool("Right",false);
+            Anm.SetBool("Left", true);
+        }
+        else
+        {
+            Anm.SetBool("Right", false);
+            Anm.SetBool("Left", false);
+        }
+            
 
 
         ///プレイヤーが空中滞在時は落下アニメーションを再生

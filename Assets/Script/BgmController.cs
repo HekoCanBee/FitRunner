@@ -8,7 +8,7 @@ public class BgmController : MonoBehaviour
     public float
         vol = 0.1f;
     public bool
-        mute = false;
+        mute;
 
     [SerializeField]
     private float
@@ -34,7 +34,7 @@ public class BgmController : MonoBehaviour
             BGM_intro.playOnAwake = false;
             BGM_intro.clip = intro;
             BGM_intro.loop = false;
-            BGM_intro.PlayScheduled(AudioSettings.dspTime + delay);
+            BGM_intro.PlayScheduled(AudioSettings.dspTime + delay);     //isplaying化
 
             if (loop != null)
             {
